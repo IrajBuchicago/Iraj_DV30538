@@ -6,7 +6,7 @@
 # Repository Structure
 
 Lectures are stored in the `lectures` folder. Within each folder, each lecture will have its own folder with slides. 
-Each problem set and mini-lesson will have their own folders within their respective folders. Kickoff slides (slides discussed before lecture starts) are all contained in `kickoff`.
+Each problem set and mini-lesson will have their own folders within their respective folders. 
 
 ---
 # Accessing the Repository
@@ -21,7 +21,7 @@ Each problem set and mini-lesson will have their own folders within their respec
 2. Click the green **Code** button and copy the **HTTPS URL**, **https://github.com/uchicago-harris-dap/student30538-w26**.  
 3. Open a terminal and run the following command:
    ```bash
-   git clone **https://github.com/uchicago-harris-dap/student30538-w26**
+   git clone https://github.com/uchicago-harris-dap/student30538-w26
    ```
 
 ### Step 3: Set the Upstream Remote  
@@ -50,18 +50,37 @@ Each problem set and mini-lesson will have their own folders within their respec
    ```
    Replace `main` if the default branch has a different name (e.g., `master`).
 
-### Step 5: Push Changes to Your Fork  
-1. After making changes, stage and commit them:
+
+---
+
+## Setting up your environment
+
+1. `cd` into the repository
+2. Create **and/or** activate the Conda environment named **dap**, then install the Python dependencies listed in `environment.yml`:
    ```bash
-   git add .
-   git commit -m "Your commit message"
-   ```
-2. Push the changes to your fork:
-   ```bash
-   git push origin main
+   conda env create -n dap -f environment.yml   # first‑time setup
+   conda activate dap                            # run this every time you work on the repo
    ```
 
 ---
+
+## Registering the Jupyter kernel
+
+Quarto’s **Preview** button in VS Code launches a Jupyter kernel whose name is defined in `_quarto.yml` (`jupyter: dap`). Register that kernel once per machine so Quarto always finds the *dap* Conda environment regardless of local paths:
+
+```bash
+conda activate dap               # ensure the env is active
+python -m ipykernel install \
+       --user \
+       --name dap \
+       --display-name "dap"
+```
+
+After this step `jupyter kernelspec list` should include a line like:
+
+```
+dap          /Users/…/Library/Jupyter/kernels/dap
+```
 
 
 Feel free to reach out via EdDiscussion if you have any questions or run into any issues. Happy coding!
